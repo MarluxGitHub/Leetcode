@@ -1,2 +1,3 @@
 # Leetcode
-Kotlin Solutions for Leetcode 
+
+Golang Solutions and Old Kotlin Solutions
