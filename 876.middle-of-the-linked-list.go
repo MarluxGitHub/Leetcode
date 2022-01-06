@@ -1,3 +1,5 @@
+package
+
 /*
  * @lc app=leetcode id=876 lang=golang
  *
@@ -14,31 +16,22 @@
  */
 func middleNode(head *ListNode) *ListNode {
 
-	dummy := &ListNode{
-		Val:  0,
-		Next: head,
-	}
-
+	dummy := head
 	count := 0
 
 	for head != nil && head.Next != nil {
 		head = head.Next
 		count++
+		if(count % 2 == 0) {
+			dummy = dummy.Next
+		}
 	}
 
-	if count%2 == 0 {
-		count = count / 2
-	} else {
-		count = count / 2 + 1
+	if(count % 2 == 1) {
+		dummy = dummy.Next
 	}
 
-	head = dummy.Next
-
-	for i := 0; i < count; i++ {
-		head = head.Next
-	}
-
-	return head
+	return dummy
 }
 // @lc code=end
 
