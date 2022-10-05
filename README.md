@@ -1,3 +1,3 @@
 # Leetcode
 
-Golang Solutions and Old Kotlin Solutions
+Leetcode Daily Problems with Kotling, Java and Go
