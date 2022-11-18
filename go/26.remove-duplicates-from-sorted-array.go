@@ -1,3 +1,5 @@
+package leetcode
+
 /*
  * @lc app=leetcode id=26 lang=golang
  *
@@ -6,7 +8,7 @@
 
 // @lc code=start
 func removeDuplicates(nums []int) int {
-    	if len(nums) == 0 {
+    if len(nums) == 0 {
 		return 0
 	}
 
