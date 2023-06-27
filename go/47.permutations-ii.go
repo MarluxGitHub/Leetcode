@@ -1,35 +1,34 @@
 package leetcode
 
+import "sort"
+
 /*
- * @lc app=leetcode id=46 lang=golang
+ * @lc app=leetcode id=47 lang=golang
  *
- * [47] Permutations
+ * [47] Permutations II
  */
 
 // @lc code=start
-func permute(nums []int) [][]int {
-    ans := [][]int{}
-    helper(&ans, 0, nums)
-    return ans
+func permuteUnique(nums []int) [][]int {
+    sort.Ints(nums)
+    return backtrack(nums, make([]bool, len(nums)), []int{}, [][]int{})
 }
 
-func helper(ans *[][]int, depth int, nums []int) {
-    if depth == len(nums) {
-        *ans = append(*ans, append([]int{}, nums...))
+func backtrack(nums []int, used []bool, permutation []int, result [][]int) [][]int {
+    if len(permutation) == len(nums) {
+        return append(result, append([]int{}, permutation...))
     }
-
-    used := make(map[int]int)
-    for i:=depth; i<len(nums); i++ {
-        if _, ok := used[nums[i]]; ok {
+    for i := 0; i < len(nums); i++ {
+        if used[i] || i > 0 && nums[i] == nums[i-1] && !used[i-1] {
             continue
         }
-
-        nums[i], nums[depth] = nums[depth], nums[i]
-        helper(ans, depth+1, nums)
-        nums[i], nums[depth] = nums[depth], nums[i]
-
-        used[nums[i]] = i
+        used[i] = true
+        permutation = append(permutation, nums[i])
+        result = backtrack(nums, used, permutation, result)
+        permutation = permutation[:len(permutation)-1]
+        used[i] = false
     }
+    return result
 }
 // @lc code=end
 
